@@ -6,12 +6,13 @@ import { useEffect } from 'react';
 import { useGetMonthTideTimes } from '../../api/getTideTimes';
 import { useCalendarContext } from '../../context/calendarContext';
 import Modal from '../modal/modal';
+import Card from '../card/card';
 
 
 const Calendar = () => {
-    const { month, year, modalOpen } = useCalendarContext();
+    const { month, year } = useCalendarContext();
     const today = new Date();
-    const { mutate: getMonthTideTimes, tideTimes, isPending } = useGetMonthTideTimes();
+    const { mutate: getMonthTideTimes, data, isPending } = useGetMonthTideTimes();
     useEffect(() => {
         getMonthTideTimes();
     }, [getMonthTideTimes])
@@ -22,29 +23,34 @@ const Calendar = () => {
     const monthLength = daysBetween(firstDay, lastDay) + 1;
     const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     //TODO some sort of load state with isPending
-    //console.log(isPending)
+    console.log(data?.weather)
     return (
-        <div>
-            <h2 className='calendar-month'>{monthLabel}</h2>
-            <div className="calendar-wrapper">
-                <div className='calendar-list'>
-                    {dayList.map((day, i) => {
-                        return <CalendarLabel day={day} key={i} />
-                    })}
-                    {Array.from({ length: monthLength }, (_, i) => {
-                        return (
-                            <CalendarDay
-                                key={i}
-                                date={i + 1}
-                                startDay={startDay}
-                                today={today.getDate()}
-                                dayData={tideTimes && tideTimes.tides[i]}
-                            />)
-                    })}
+        <Card calendarCard>
+            <div className='calendar-container'>
+                <div className='calendar-month'>
+                    <h2>{monthLabel}</h2>
+                    <h2>Battery Creek Sandbar</h2>
+                </div>
+                <div className="calendar-wrapper">
+                    <div className='calendar-list'>
+                        {dayList.map((day, i) => {
+                            return <CalendarLabel day={day} key={i} />
+                        })}
+                        {Array.from({ length: monthLength }, (_, i) => {
+                            return (
+                                <CalendarDay
+                                    key={i}
+                                    date={i + 1}
+                                    startDay={startDay}
+                                    today={today.getDate()}
+                                    dayData={data && data.tides[i]}
+                                />)
+                        })}
+                    </div>
                 </div>
             </div>
             <Modal />
-        </div>
+        </Card>
     )
 }
 

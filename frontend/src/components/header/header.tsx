@@ -3,7 +3,9 @@ import './header.css'
 const Header = () => {
     return (
         <header className="header-wrapper">
-            <span className='header-text'>Beaufort Sandbar Tracker</span>
+            <div className='header-text-wrapper'>
+                <span className='header-text'>Beaufort Sandbar Tracker</span>
+            </div>
         </header>
     )
 }

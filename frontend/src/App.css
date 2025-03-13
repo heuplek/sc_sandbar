@@ -1,10 +1,22 @@
+:root{
+  --light: #F6F6F7;
+  --light-accent: #99A1A4;
+  --primary: #7498D1;
+  --dark-accent: #6C71A1;
+  --dark: #2E4676;
+  --font-size-sm: 14px;
+  --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
 /* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  font-size: var(--font-size-xs);
-  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  background-color: var(--primary);
 }
 
 /* Remove default margins */
@@ -65,46 +77,9 @@ select {
   font: inherit;
 }
 
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
-/* Remove padding from fieldsets */
-fieldset {
-  margin: 0;
-  padding: 0;
-}
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Animation */
-.transition-all {
-  transition-duration: 150ms;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Prevents highlighting */
-.select-none {
-  user-select: none;
-}
 
 h1 {
   font-weight: normal;
-  font-size: var(--font-size-2xl);
   font-family:
     Bitter Variable,
     Georgia,
@@ -121,3 +96,4 @@ h1 {
   overflow: hidden;
   white-space: nowrap;
 }
+

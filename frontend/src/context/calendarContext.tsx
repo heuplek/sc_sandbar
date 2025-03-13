@@ -20,8 +20,10 @@ export interface CalendarContextType {
     setYear: (year: number) => void;
     calendarData: TideRespObj[];
     setCalendarData: (calendarData: TideRespObj[]) => void;
-    modalOpen: boolean;
-    setModalOpen: (modalOpen: boolean) => void;
+    leftDrawerOpen: boolean;
+    setLeftDrawerOpen: (leftDrawerOpen: boolean) => void;
+    rightDrawerOpen: boolean;
+    setRightDrawerOpen: (leftDrawerOpen: boolean) => void;
     modalData: TideRespObj | undefined;
     setModalData: (modalData: TideRespObj) => void;
 }
@@ -40,7 +42,8 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const today = new Date();
     const [month, setMonth] = useState<number>(today.getMonth() + 1);
     const [year, setYear] = useState<number>(today.getFullYear());
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [leftDrawerOpen, setLeftDrawerOpen] = useState<boolean>(false);
+    const [rightDrawerOpen, setRightDrawerOpen] = useState<boolean>(false);
     const [modalData, setModalData] = useState<TideRespObj>();
     //not actually using this yet
     const [calendarData, setCalendarData] = useState<TideRespObj[]>([]);
@@ -52,8 +55,10 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
         setYear,
         calendarData,
         setCalendarData,
-        modalOpen,
-        setModalOpen,
+        leftDrawerOpen,
+        setLeftDrawerOpen,
+        rightDrawerOpen,
+        setRightDrawerOpen,
         modalData,
         setModalData
     };

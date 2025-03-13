@@ -15,17 +15,21 @@ const getMonthTideTimes = async (
 
 export const useGetMonthTideTimes = () => {
     const { setCalendarData, month, year } = useCalendarContext();
-    const {mutate, data: tideTimes, isPending} = useMutation(
-        {mutationFn: ()=>getMonthTideTimes(month, year),
-            onSuccess: (data) => {
-                //console.log(data)
-                setCalendarData(data);
-            },
-            onSettled: () => {},
-            onError: (error) => {
-                //TODO: handle error
-                throw error;
-            }
-        });
-        return {mutate, tideTimes, isPending};
+    const {
+        mutate,
+        data: data,
+        isPending,
+    } = useMutation({
+        mutationFn: () => getMonthTideTimes(month, year),
+        onSuccess: (data) => {
+            //console.log(data)
+            setCalendarData(data.tides);
+        },
+        onSettled: () => {},
+        onError: (error) => {
+            //TODO: handle error
+            throw error;
+        },
+    });
+    return { mutate, data, isPending };
 };
