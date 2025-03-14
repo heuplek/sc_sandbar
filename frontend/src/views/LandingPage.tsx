@@ -5,9 +5,9 @@ import DrawerContainer from "../components/drawer/drawerContainer";
 const LandingPage = () => {
     return (
         <div className="landing-page">
-            <DrawerContainer side="right" />
             <DrawerContainer side="left" />
             <Calendar />
+            <DrawerContainer side="right" />
         </div >
     )
 }
