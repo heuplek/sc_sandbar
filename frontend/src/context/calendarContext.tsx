@@ -13,6 +13,15 @@ export type TideRespObj = {
     tides: TideObj[];
 }
 
+export type WeatherObj = {
+    name: string;
+    detailedForecast: string;
+    percipChance: number;
+    temperature: number;
+    windSpeed: number;
+    date: string;
+}
+
 export interface CalendarContextType {
     month: number;
     setMonth: (month: number) => void;
@@ -24,8 +33,10 @@ export interface CalendarContextType {
     setLeftDrawerOpen: (leftDrawerOpen: boolean) => void;
     rightDrawerOpen: boolean;
     setRightDrawerOpen: (leftDrawerOpen: boolean) => void;
-    modalData: TideRespObj | undefined;
-    setModalData: (modalData: TideRespObj) => void;
+    tideData: TideRespObj | undefined;
+    setTideData: (modalData: TideRespObj) => void;
+    weatherData: WeatherObj[] | undefined;
+    setWeatherData: (modalData: WeatherObj[]) => void;
 }
 
 const AppContext = createContext<CalendarContextType | undefined>(undefined);
@@ -44,7 +55,8 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const [year, setYear] = useState<number>(today.getFullYear());
     const [leftDrawerOpen, setLeftDrawerOpen] = useState<boolean>(false);
     const [rightDrawerOpen, setRightDrawerOpen] = useState<boolean>(false);
-    const [modalData, setModalData] = useState<TideRespObj>();
+    const [tideData, setTideData] = useState<TideRespObj>();
+    const [weatherData, setWeatherData] = useState<WeatherObj[]>([]);
     //not actually using this yet
     const [calendarData, setCalendarData] = useState<TideRespObj[]>([]);
 
@@ -59,8 +71,10 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
         setLeftDrawerOpen,
         rightDrawerOpen,
         setRightDrawerOpen,
-        modalData,
-        setModalData
+        tideData,
+        setTideData,
+        weatherData,
+        setWeatherData,
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

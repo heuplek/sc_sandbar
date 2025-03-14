@@ -1,13 +1,6 @@
-.card-area {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.main-area {
+.landing-page {
     height: 100%;
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
     justify-items: center;
-}
+  }

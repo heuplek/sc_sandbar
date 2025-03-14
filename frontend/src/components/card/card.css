@@ -1,7 +1,7 @@
 .card-wrapper{
     border:1px solid #000;
     border-radius: 5px;
-    margin: 16px;
+    margin: 8px;
     padding: 16px;   
     flex: 0 1 calc(25% - 20px);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -10,4 +10,5 @@
 
 .calendar-card{
     justify-self: center;
+    padding-bottom: 0px;
 }

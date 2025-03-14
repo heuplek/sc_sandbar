@@ -42,6 +42,7 @@
     justify-content: flex-end;
     background-color: var(--light);
     min-height: 70px;
+    max-width: 120px;
 }
 
 .calendar-day--today{
@@ -66,5 +67,12 @@
     position: absolute;
     top: 5px;
     right: 5px;
+    color: var(--dark);
+}
+
+.calendar-weather{
+    position: absolute;
+    top: 5px;
+    left: 5px;
     color: var(--dark);
 }

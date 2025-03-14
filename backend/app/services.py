@@ -106,6 +106,7 @@ def get_weather():
                 'detailedForecast': period['detailedForecast'],
                 'temperature': period['temperature'],
                 'windSpeed': period['windSpeed'],
+                'date': date
             }])
         else:
             weather[date].append({
@@ -114,6 +115,7 @@ def get_weather():
                 'detailedForecast': period['detailedForecast'],
                 'temperature': period['temperature'],
                 'windSpeed': period['windSpeed'],
+                'date': date
             })
     return weather
 

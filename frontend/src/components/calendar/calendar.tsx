@@ -4,8 +4,7 @@ import CalendarLabel from './calendarLabel';
 import { daysBetween } from '../../helpers/daysBetween';
 import { useEffect } from 'react';
 import { useGetMonthTideTimes } from '../../api/getTideTimes';
-import { useCalendarContext } from '../../context/calendarContext';
-import Modal from '../modal/modal';
+import { TideRespObj, useCalendarContext } from '../../context/calendarContext';
 import Card from '../card/card';
 
 
@@ -23,7 +22,7 @@ const Calendar = () => {
     const monthLength = daysBetween(firstDay, lastDay) + 1;
     const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     //TODO some sort of load state with isPending
-    console.log(data?.weather)
+    console.log(month)
     return (
         <Card calendarCard>
             <div className='calendar-container'>
@@ -36,7 +35,8 @@ const Calendar = () => {
                         {dayList.map((day, i) => {
                             return <CalendarLabel day={day} key={i} />
                         })}
-                        {Array.from({ length: monthLength }, (_, i) => {
+                        {Array.from({ length: monthLength }, (_, i) => {    
+                            const dateStr = year + '-' + (month < 10 ? '0' + month : month) + '-' + (i + 1 < 10 ? '0' + (i + 1) : i + 1);
                             return (
                                 <CalendarDay
                                     key={i}
@@ -44,12 +44,12 @@ const Calendar = () => {
                                     startDay={startDay}
                                     today={today.getDate()}
                                     dayData={data && data.tides[i]}
+                                    weatherData={data && data.weather[dateStr]}
                                 />)
                         })}
                     </div>
                 </div>
             </div>
-            <Modal />
         </Card>
     )
 }
