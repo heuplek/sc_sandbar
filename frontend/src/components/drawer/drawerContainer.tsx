@@ -5,6 +5,8 @@ import { useCalendarContext } from "../../context/calendarContext";
 import WeatherDrawerContent from "./weatherDrawerContent";
 import Forward from "../../assets/forward.svg";
 import Back from "../../assets/back.svg";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import ChevronButton from "../chevronButton/chevronButton";
 
 type DrawerContainerProps = {
     side: string;
@@ -24,9 +26,16 @@ const DrawerContainer = ({ side }: DrawerContainerProps) => {
             setLeftDrawerOpen(!leftDrawerOpen);
         }
     }
-    
+
+    //Window Resize close drawers if both are open to prevent wonky layout
+    const { width } = useWindowSize();
+    if (width < 1391 && (leftDrawerOpen && rightDrawerOpen)) {
+        setLeftDrawerOpen(false);
+        setRightDrawerOpen(false);
+    }
+
     return (
-        <div data-open={isRightDrawer ? rightDrawerOpen : leftDrawerOpen}>
+
             <div
                 ref={isRightDrawer ? rightSidebarRef : leftSidebarRef}
                 className={isRightDrawer ? rightDrawerOpen ? `${className} active` : className : leftDrawerOpen ? `${className} active` : className}
@@ -36,7 +45,9 @@ const DrawerContainer = ({ side }: DrawerContainerProps) => {
                 {isRightDrawer && rightDrawerOpen &&
                     (
                         <>
-                            <button className={`close-button--right`} onClick={closeDrawer(isRightDrawer)}><img src={Forward} alt="close drawer" /></button>
+                        <div className="button-container--right">
+                            <ChevronButton direction="right" clickFunction={closeDrawer(isRightDrawer)} borderRadiusSide="right" />
+                        </div>
                             <TideDrawerContent />
                             </>
                     )}
@@ -45,11 +56,12 @@ const DrawerContainer = ({ side }: DrawerContainerProps) => {
                 {!isRightDrawer && leftDrawerOpen ?
                     (
                         <>
-                            <button className={`close-button--left`} onClick={closeDrawer(isRightDrawer)}><img src={Back} alt="close drawer" /></button>
+                            <div className="button-container--left">
+                                <ChevronButton direction="left" clickFunction={closeDrawer(isRightDrawer)} borderRadiusSide="left" />
+                            </div>
                             <WeatherDrawerContent />
                             </>
-                    ): <></>}
-                     </div>
+                    ) : <></>}
             </div>
         </div>
     )

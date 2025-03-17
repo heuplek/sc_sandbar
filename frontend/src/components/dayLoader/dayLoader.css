@@ -1,0 +1,14 @@
+.loader {
+    animation: date-loading 2s linear infinite alternate;
+    height: 100%;
+    border-radius: 5px;
+}
+
+@keyframes date-loading {
+    0% {
+        background-color: var(--light); 
+    }
+    100% {
+        background-color: var(--light-accent);
+    }
+}

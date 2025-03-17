@@ -23,6 +23,8 @@ export type WeatherObj = {
 }
 
 export interface CalendarContextType {
+    day: number;
+    setDay: (day: number) => void;
     month: number;
     setMonth: (month: number) => void;
     year: number;
@@ -52,6 +54,7 @@ export function useCalendarContext() {
 export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const today = new Date();
     const [month, setMonth] = useState<number>(today.getMonth() + 1);
+    const [day, setDay] = useState<number>(today.getDate());
     const [year, setYear] = useState<number>(today.getFullYear());
     const [leftDrawerOpen, setLeftDrawerOpen] = useState<boolean>(false);
     const [rightDrawerOpen, setRightDrawerOpen] = useState<boolean>(false);
@@ -61,6 +64,8 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const [calendarData, setCalendarData] = useState<TideRespObj[]>([]);
 
     const value: CalendarContextType = {
+        day,
+        setDay,
         month,
         setMonth,
         year,

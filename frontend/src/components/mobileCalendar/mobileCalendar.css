@@ -1,0 +1,68 @@
+.mobile-day{  
+    position: relative;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light);
+    min-height: 400px;
+    min-width: 250px;
+}
+
+.mobile-day--today{
+    border: 3px solid var(--dark);
+    border-radius: 10px;
+}
+
+.calendar-columns{
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 8px 8px 8px 10px;
+    border-radius: 5px;
+    background-color: var(--light-accent);
+}
+
+.calendar-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.mobile-month{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.mobile-date{
+    font-size: 24px;
+    color: var(--dark);
+}
+
+.mobile-stars{
+    min-height: 42px;
+}
+
+.mobile-date--container{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 48px;
+}
+
+.hold-space{
+    min-width: 253px;
+}
+
+.sandbar-window{
+    padding-left: 8px;
+}
+
+.mobile-column-header{
+    color: var(--dark);
+    font-size: 18px;
+}

@@ -123,7 +123,7 @@ def get_weather():
 
 def get_tide_times(year: int, month: int):
     if month > 10 or month < 3:
-        return "Its off season"
+        return "It's Off Season"
     if(month < 10):
         month = f'0{month}'
     seven_day_forecast = get_weather()
