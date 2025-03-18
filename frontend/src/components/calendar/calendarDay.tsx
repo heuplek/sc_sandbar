@@ -6,6 +6,7 @@ import PartlyCloudy from "../../assets/partly_cloudy.svg";
 import ChanceOfRain from "../../assets/chance_of_rain.svg";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import DayLoader from "../dayLoader/dayLoader";
+import { useEffect } from "react";
 
 type CalendarDayProps = {
     date: number;
@@ -17,13 +18,28 @@ type CalendarDayProps = {
 }
 
 const CalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }: CalendarDayProps) => {
-    const { setRightDrawerOpen, setLeftDrawerOpen, setTideData, setWeatherData, month } = useCalendarContext();
+    const { setRightDrawerOpen, setLeftDrawerOpen, setTideData, setWeatherData, month, setDay, day } = useCalendarContext();
+    useEffect(() => {
+        if (date == day && month == today.getMonth() + 1) {
+            openData();
+        }
+    }, [dayData, weatherData]);
+
+    const isSelected = date == day && month == today.getMonth() + 1;
     const isToday = date == today.getDate() && month == today.getMonth() + 1;
+    console.log(isSelected)
+
     const { width } = useWindowSize();
+
+
     const openData = () => {
-        setTideData(dayData);
-        setWeatherData(weatherData);
-        if (width < 1391) {
+        //let the animation happen before hydrating data to prevent flashing as content grows
+        setTimeout(() => {
+            setDay(date);
+            setTideData(dayData);
+            setWeatherData(weatherData);
+        }, 100);
+        if (width < 1403) {
             setRightDrawerOpen(true);
             setLeftDrawerOpen(false);
         } else if (!weatherData) {
@@ -54,11 +70,11 @@ const CalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }:
         }
     }
     return (
-        <div className={`${isToday ? "calendar-day--today" : ""} calendar-day`} style={date == 1 ? { gridColumnStart: startDay } : undefined} onClick={openData} role="button">
+        <div className={`${isSelected ? "calendar-day--selected" : ""} calendar-day`} style={date == 1 ? { gridColumnStart: startDay } : undefined} >
             {isPending && <DayLoader />}
-            <span className="calendar-date">{date}</span>
+            <span className={`${isToday ? "calendar-date--today" : ""} calendar-date`}>{date}</span>
             {!isPending &&
-                <button className="calendar-day--button">
+                <button className="calendar-day--button" onClick={openData}>
                     <div className="calendar-day--content">
                         {weatherIcon && <img className="calendar-weather" src={weatherIcon} alt="close drawer" />}
                         {dayData && dayData.tides.map((tide, i) => {

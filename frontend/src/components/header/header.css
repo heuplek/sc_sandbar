@@ -13,6 +13,8 @@
     padding: 10px 20px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    border: 1px solid var(--light);
+    border-top: none;
 }
 
 .header-text{

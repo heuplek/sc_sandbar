@@ -1,23 +1,39 @@
-:root{
-  --light: #F6F6F7;
-  --light-accent: #99A1A4;
-  --primary: #7498D1;
-  --dark-accent: #6C71A1;
-  --dark: #2E4676;
-  --font-size-sm: 14px;
-  --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+:root {
+    --light: #f6f6f7;
+    --light-accent: #99a1a4;
+    --primary: #7498d1;
+    --dark-accent: #6c71a1;
+    --dark: #2e4676;
+    --font-size-sm: 14px;
+    --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+        sans-serif;
 }
-
 
 /* Prevent font size inflation */
 html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  font-size: var(--font-size-sm);
-  font-family: var(--font-family);
-  background-color: var(--primary);
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family);
+    background: linear-gradient(45deg, var(--light), var(--primary), var(--dark), var(--light-accent));
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+    height: 100vh;
 }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 
 /* Remove default margins */
 blockquote,
@@ -34,15 +50,15 @@ figure,
 p,
 body,
 pre {
-  margin: 0;
+    margin: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ol,
 ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 /* Make Images Block Level */
@@ -54,8 +70,8 @@ audio,
 iframe,
 embed,
 object {
-  display: block;
-  align-items: center;
+    display: block;
+    align-items: center;
 }
 
 /* Unstyle Headings */
@@ -65,8 +81,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: inherit;
-  font-size: inherit;
+    font-weight: inherit;
+    font-size: inherit;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -74,26 +90,21 @@ input,
 textarea,
 button,
 select {
-  font: inherit;
+    font: inherit;
 }
 
-
 h1 {
-  font-weight: normal;
-  font-family:
-    Bitter Variable,
-    Georgia,
-    serif;
+    font-weight: normal;
+    font-family: Bitter Variable, Georgia, serif;
 }
 
 .visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  position: absolute;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
+    border: 0;
+    clip: rect(0 0 0 0);
+    position: absolute;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
 }
-

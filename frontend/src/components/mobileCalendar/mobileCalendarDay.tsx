@@ -17,10 +17,8 @@ type CalendarDayProps = {
 }
 
 const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }: CalendarDayProps) => {
-    const { setRightDrawerOpen, setLeftDrawerOpen, setTideData, setWeatherData, month } = useCalendarContext();
+    const { month } = useCalendarContext();
     const isToday = date == today.getDate() && month == today.getMonth() + 1;
-    const { width } = useWindowSize();
-
     let weatherIcon;
     let weatherIconAlt = "weather";
     if (weatherData) {
@@ -40,14 +38,13 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
         }
     }
 
-    console.log(date)
     return (
         <div className={`${isToday ? "mobile-day--today" : ""} mobile-day`} >
             {isPending && <DayLoader />}
             {!isPending &&
                 <div className="calendar-day--content">
                     <div className="mobile-date--container">
-                    {weatherIcon && <img className="mobile-weather" src={weatherIcon} alt="close drawer" height="48"/>}
+                        {weatherIcon && <img className="mobile-weather" src={weatherIcon} alt="close drawer" height="48" />}
                     </div>
                     <div className="calendar-columns">
                         <div>
@@ -58,8 +55,10 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
                                         <p className="drawer-content--bold">{tide.type == "L" ? "Low" : "High"}</p>
                                         <p>{tide.time} {tide.height} ft</p>
                                         {tide.sandbar_window && (
-                                            <div className="sandbar-window"><p>Sandbar Window: </p>
-                                        <p>{tide.sandbar_window}</p></div>)}
+                                            <div className="sandbar-window">
+                                                <p>Sandbar Window: </p>
+                                                <p>{tide.sandbar_window}</p>
+                                            </div>)}
                                     </div>
                                 )
                             })}
@@ -79,7 +78,7 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
                                 )
                             })}
                         </div> :
-                        <div className="hold-space"></div>}
+                            <div className="hold-space"></div>}
                     </div>
                     {dayData && dayData.tides.map((tide, i) => {
                         console.log(tide.sandbar_rating)
@@ -91,7 +90,7 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
                                     }
                                 </div>)
                             )
-                        }        
+                        }
                     })}
                 </div>
             }

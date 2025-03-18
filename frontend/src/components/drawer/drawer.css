@@ -6,35 +6,14 @@
     border-radius: 5px 0px 0px 5px;
     background-color: aliceblue;
     z-index: 0;
-    height: 0;
+    min-height: 50vh;
     transition: width 200ms ease-out;
-}
-
-.left-sidebar {
-    display: block;
-    position: absolute;
-    margin-top: 8px;
-    width: 0;
-    height: 0;
-    border-radius: 0px 5px 5px 0px;
-    background-color: aliceblue;
-    z-index: 0;
-    transition: width 200ms ease-out;
-}
-
-.left-sidebar.active {
-    width: 300px;
-    z-index: 6000;
-    left: 0px;
-    box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--dark);
 }
 
 .right-sidebar.active {
     width: 300px;
     z-index: 6000;
     right: 0px;
-    height: 100%;
     box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--dark);
 }

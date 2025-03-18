@@ -10,9 +10,15 @@
     font-size: 32px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 700;
-    gap: 24px;
     display: flex;
-    color: var(--dark-accent);
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--primary);
+}
+
+.calendar-month-label{
+    display: flex;
+    gap: 24px;
 }
 
 .calendar-list{
@@ -45,7 +51,7 @@
 }
 
 
-.calendar-day--today{
+.calendar-day--selected{
     border: 3px solid var(--dark);
     border-radius: 10px;
 }
@@ -60,8 +66,8 @@
 }
 
 .calendar-day--button:hover{
-    background-color: var(--light);
-    color: var(--light-accent);
+    background-color: var(--light-accent);
+    border: 2px solid var(--dark);
 }
 
 .calendar-date{
@@ -70,6 +76,16 @@
     right: 5px;
     color: var(--dark);
 }
+
+.calendar-date--today{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: var(--dark);
+    font-weight: 600;
+    outline: 2px solid var(--dark);
+}
+
 
 .calendar-weather{
     position: absolute;

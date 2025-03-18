@@ -3,10 +3,10 @@ import { useCalendarContext } from "../../context/calendarContext";
 
 const WeatherDrawerContent = () => {
     const { weatherData } = useCalendarContext();
-    const dateArr =  weatherData && weatherData[0].date.split('-');
-    return (
+    const dateArr = weatherData && weatherData[0]?.date.split('-');
+    return weatherData ? (
         <div className="drawer-content">
-            <h2 className="drawer-content--header">Weather Info</h2>
+            <h2 className="drawer-content--header">Weather</h2>
             <p className="drawer-content--date">{dateArr && dateArr[1] + "/" + dateArr[2] + "/" +dateArr[0]}</p>
             {!weatherData && <p>No tide data available</p>}
             {weatherData?.map((period, i) => {
@@ -22,7 +22,7 @@ const WeatherDrawerContent = () => {
                 )
             })}
         </div>
-    )
+    ) : (<></>)
 }
 
 export default WeatherDrawerContent;

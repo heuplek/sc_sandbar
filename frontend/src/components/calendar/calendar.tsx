@@ -7,10 +7,11 @@ import { useGetMonthTideTimes } from '../../api/getTideTimes';
 import { useCalendarContext } from '../../context/calendarContext';
 import Card from '../card/card';
 import ChevronButton from '../chevronButton/chevronButton';
+import OffSeason from '../offSeason/offSeason';
 
 
 const Calendar = () => {
-    const { month, year, setMonth } = useCalendarContext();
+    const { month, year, setMonth, setLeftDrawerOpen, setRightDrawerOpen } = useCalendarContext();
     const today = new Date();
     const { mutate: getMonthTideTimes, data, isPending } = useGetMonthTideTimes();
     const [monthLabel, setMonthLabel] = useState(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
@@ -33,38 +34,50 @@ const Calendar = () => {
     if (data == "It's Off Season") {
         offSeason = true;
     }
+
+    const handleClick = (increment: number) => {
+        setMonth(month + increment);
+        setLeftDrawerOpen(false);
+        setRightDrawerOpen(false);
+    }
+
     return (
         <Card calendarCard>
             <div className='calendar-container'>
                 <div className='calendar-month'>
-                    <ChevronButton direction="left" clickFunction={() => { setMonth(month - 1) }} borderRadiusSide='all' />
-                    <h2>{monthLabel}</h2>
-                    <ChevronButton direction="right" clickFunction={() => { setMonth(month + 1) }} borderRadiusSide='all' />
-                    <h2>{today.getFullYear()}</h2>
+                    <div className='calendar-month-label'>
+                        <ChevronButton direction="left" clickFunction={() => handleClick(-1)} borderRadiusSide='all' />
+                        <h2>{monthLabel}</h2>
+                        {month != 12 && <ChevronButton direction="right" clickFunction={() => handleClick(1)} borderRadiusSide='all' />}
+                    </div>
+                    <div>
+                        <h2>{today.getFullYear()}</h2>
+                    </div>
                 </div>
-                {offSeason && <h2>It's Off Season</h2>}
-                {!offSeason &&
+
                 <div className="calendar-wrapper">
-                    <div className='calendar-list'>
+
+                    {offSeason && <OffSeason />}
+                    {!offSeason && <div className='calendar-list'>
                         {dayList.map((day, i) => {
                             return <CalendarLabel day={day} key={i} />
                         })}
                             {Array.from({ length: monthLength }, (_, i) => {
-                            const dateStr = year + '-' + (month < 10 ? '0' + month : month) + '-' + (i + 1 < 10 ? '0' + (i + 1) : i + 1);
-                            return (
-                                <CalendarDay
-                                    key={i}
-                                    date={i + 1}
-                                    startDay={startDay}
-                                    today={today}
-                                    dayData={data && data.tides[i]}
-                                    weatherData={data && data.weather[dateStr]}
-                                    isPending={isPending}
-                                />)
-                        })}
+                                const dateStr = year + '-' + (month < 10 ? '0' + month : month) + '-' + (i + 1 < 10 ? '0' + (i + 1) : i + 1);
+                                return (
+                                    <CalendarDay
+                                        key={i}
+                                        date={i + 1}
+                                        startDay={startDay}
+                                        today={today}
+                                        dayData={data && data.tides[i]}
+                                        weatherData={data && data.weather[dateStr]}
+                                        isPending={isPending}
+                                    />)
+                            })}
+                    </div>}
                     </div>
-                </div>
-                }
+
             </div>
         </Card>
     )
