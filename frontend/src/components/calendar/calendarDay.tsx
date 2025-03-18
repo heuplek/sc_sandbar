@@ -27,7 +27,6 @@ const CalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }:
 
     const isSelected = date == day && month == today.getMonth() + 1;
     const isToday = date == today.getDate() && month == today.getMonth() + 1;
-    console.log(isSelected)
 
     const { width } = useWindowSize();
 
