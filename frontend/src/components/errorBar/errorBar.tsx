@@ -1,5 +1,5 @@
 import { useCalendarContext } from '../../context/calendarContext'
-import './header.css'
+import './errorBar.css'
 
 const ErrorBar = () => {
     const { errorObj } = useCalendarContext()
