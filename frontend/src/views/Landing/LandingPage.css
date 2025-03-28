@@ -1,0 +1,43 @@
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-button {
+    cursor: pointer;
+    background-color: var(--dark);
+    padding: 10px 20px;
+    color: var(--light);
+    border: none;
+    border-radius: 5px;
+}
+
+.about-button:hover {
+    background-color: var(--light-accent);
+    color: var(--dark);
+}
+
+.user-inputs-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+}
+.user-inputs-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-inputs-window {
+    margin-left: 10px;
+}
+
+@media (min-width: 1100px) {
+    .landing-page {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0;
+    }
+}

@@ -1,0 +1,115 @@
+:root {
+    --light: #f6f6f7;
+    --light-accent: #99a1a4;
+    --light-accent--light: #d1d3d5;
+    --light-accent--dark: #4d5458;
+    --primary: #7498d1;
+    --primary--dark: #4d6a9b;
+    --primary--light: #a3c0e7;
+    --dark-accent: #6c71a1;
+    --dark-accent--light: #8590b3;
+    --dark-accent--dark: #586e95;
+    --dark: #2e4676;
+    --dark--light: #4d6a9b;
+    --dark--dark: #1c2a5b;
+    --font-size-sm: 14px;
+    --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+        sans-serif;
+}
+
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family);
+    background: linear-gradient(45deg, var(--light), var(--primary), var(--dark), var(--light-accent));
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+    height: 100vh;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Remove default margins */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+body,
+pre {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ol,
+ul {
+    margin: 4px;
+}
+
+/* Make Images Block Level */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    align-items: center;
+}
+
+/* Unstyle Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+textarea,
+button,
+select {
+    font: inherit;
+}
+
+h1 {
+    font-weight: normal;
+    font-family: Bitter Variable, Georgia, serif;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    position: absolute;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
