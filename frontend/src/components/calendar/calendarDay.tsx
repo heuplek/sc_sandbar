@@ -6,7 +6,7 @@ import PartlyCloudy from "../../assets/partly_cloudy.svg";
 import ChanceOfRain from "../../assets/chance_of_rain.svg";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import DayLoader from "../dayLoader/dayLoader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type CalendarDayProps = {
     date: number;
@@ -24,20 +24,27 @@ const CalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }:
             openData();
         }
     }, [dayData, weatherData]);
+    const [isSelected, setIsSelected] = useState(false);
 
-    const isSelected = date == day && month == today.getMonth() + 1;
+    useEffect(() => {
+        setIsSelected(date == day);
+    }, [day, month]);
+
     const isToday = date == today.getDate() && month == today.getMonth() + 1;
-
+    let beforeToday = false
     const { width } = useWindowSize();
-
+    if (date < today.getDate() && month <= today.getMonth() + 1) {
+        beforeToday = true;
+    }
 
     const openData = () => {
         //let the animation happen before hydrating data to prevent flashing as content grows
+        console.log("openData");
         setTimeout(() => {
             setDay(date);
             setTideData(dayData);
             setWeatherData(weatherData);
-        }, 100);
+        }, 200);
         if (width < 1403) {
             setRightDrawerOpen(true);
             setLeftDrawerOpen(false);
@@ -73,22 +80,20 @@ const CalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }:
             {isPending && <DayLoader />}
             <span className={`${isToday ? "calendar-date--today" : ""} calendar-date`}>{date}</span>
             {!isPending &&
-                <button className="calendar-day--button" onClick={openData}>
+                <button className={`calendar-day--button ${beforeToday ? "old-date" : ""}`} onClick={openData} aria-label={`Open Tide and Data Drawer for ${date}`}>
                     <div className="calendar-day--content">
-                        {weatherIcon && <img className="calendar-weather" src={weatherIcon} alt="close drawer" />}
-                        {dayData && dayData.tides.map((tide, i) => {
-                            if (tide.sandbar_rating == 0) {
+                        {weatherIcon && <img className="calendar-weather" src={weatherIcon} alt={weatherIconAlt} />}
+                        {!beforeToday && dayData && dayData.tides.map((tide, i) => {
+                            if (tide.sandbar_rating != 0 && tide.sandbar_rating) {
                                 return (
-                                    <div key={i} className=""></div>
+                                    (<div key={i} className="calendar-stars">
+                                        {(tide.sandbar_rating) &&
+                                            <StarPanel numStars={tide.sandbar_rating} />
+                                        }
+                                    </div>)
                                 )
                             }
-                            return (
-                                (<div key={i} className="calendar-stars">
-                                    {(tide.sandbar_rating) &&
-                                        <StarPanel numStars={tide.sandbar_rating} />
-                                    }
-                                </div>)
-                            )
+
                         })}
                     </div>
                 </button>

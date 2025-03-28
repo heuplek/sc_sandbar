@@ -1,0 +1,65 @@
+.datepicker-wrapper {
+    position: relative;
+    z-index: 1000;
+    background-color: var(--light);
+    border-radius: 5px;
+}
+
+.datepicker-month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.datepicker-month h1,
+h2 {
+    padding-top: 2px;
+    font-size: 1.5rem;
+    color: var(--dark);
+    font-family: var(--font-family);
+}
+
+.datepicker-month-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--dark);
+}
+
+.datepicker-button {
+    background-color: var(--light);
+    border: none;
+    color: var(--dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 35px;
+}
+
+.date-picker-today {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+.datepicker-button:hover {
+    background-color: var(--primary);
+}
+
+.calendar-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.datepicker-open-button {
+    cursor: pointer;
+    background-color: var(--dark);
+    color: var(--light);
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+}

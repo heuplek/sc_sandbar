@@ -80,12 +80,11 @@
 .drawer-content--date {
     font-size: 16px;
     color: var(--dark);
-    margin-bottom: 8px;
     text-align: center;
 }
 
 .drawer-content p {
-    padding-bottom: 8px;
+    padding-bottom: 4px;
 }
 
 .drawer-content--bold {
@@ -103,4 +102,9 @@
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.tide-data .tide:nth-child(odd):not(:first-child) {
+    margin-top: 2px;
+    border-top: var(--dark) 1px dashed;
 }

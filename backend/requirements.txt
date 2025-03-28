@@ -1,0 +1,5 @@
+fastapi==0.115.12
+pydantic==2.11.0
+Requests==2.32.3
+requests_cache==1.2.1
+uvicorn==0.34.0

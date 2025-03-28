@@ -4,7 +4,6 @@ import Sun from "../../assets/sun.svg";
 import Rain from "../../assets/rain.svg";
 import PartlyCloudy from "../../assets/partly_cloudy.svg";
 import ChanceOfRain from "../../assets/chance_of_rain.svg";
-import { useWindowSize } from "../../hooks/useWindowSize";
 import DayLoader from "../dayLoader/dayLoader";
 
 type CalendarDayProps = {
@@ -16,7 +15,7 @@ type CalendarDayProps = {
     isPending?: boolean;
 }
 
-const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPending }: CalendarDayProps) => {
+const MobileCalendarDay = ({ date, today, dayData, weatherData, isPending }: CalendarDayProps) => {
     const { month } = useCalendarContext();
     const isToday = date == today.getDate() && month == today.getMonth() + 1;
     let weatherIcon;
@@ -44,17 +43,17 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
             {!isPending &&
                 <div className="calendar-day--content">
                     <div className="mobile-date--container">
-                        {weatherIcon && <img className="mobile-weather" src={weatherIcon} alt="close drawer" height="48" />}
+                        {weatherIcon && <img className="mobile-weather" src={weatherIcon} alt={weatherIconAlt} height="48" />}
                     </div>
                     <div className="calendar-columns">
-                        <div>
+                        <div >
                             <h3 className="mobile-column-header">Tides</h3>
                             {dayData?.tides.map((tide, i) => {
                                 return (
                                     <div key={i}>
                                         <p className="drawer-content--bold">{tide.type == "L" ? "Low" : "High"}</p>
                                         <p>{tide.time} {tide.height} ft</p>
-                                        {tide.sandbar_window && (
+                                        {tide?.sandbar_window && tide?.sandbar_window[0].endsWith("PM") && (
                                             <div className="sandbar-window">
                                                 <p>Sandbar Window: </p>
                                                 <p>{tide.sandbar_window}</p>
@@ -81,12 +80,11 @@ const MobileCalendarDay = ({ date, startDay, today, dayData, weatherData, isPend
                             <div className="hold-space"></div>}
                     </div>
                     {dayData && dayData.tides.map((tide, i) => {
-                        console.log(tide.sandbar_rating)
                         if (tide.sandbar_rating != 0 && tide.sandbar_rating != undefined) {
                             return (
                                 (<div key={i} className="mobile-stars">
                                     {(tide.sandbar_rating) &&
-                                        <StarPanel numStars={tide.sandbar_rating} large={true} />
+                                        <><p>Rating</p><StarPanel numStars={tide.sandbar_rating} large={true} /></>
                                     }
                                 </div>)
                             )

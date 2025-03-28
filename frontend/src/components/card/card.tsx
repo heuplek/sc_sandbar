@@ -3,8 +3,8 @@ import { useCalendarContext } from "../../context/calendarContext";
 import "./card.css";
 
 type CardProps = {
-    calendarCard?: boolean;
-    children: ReactNode;
+  calendarCard?: boolean;
+  children: ReactNode;
   isMobile?: boolean;
 };
 
@@ -45,12 +45,12 @@ const Card = ({ children, calendarCard, isMobile }: CardProps) => {
       </div>
     )
     : (
-    <div className={`card-wrapper ${calendarCard ? "calendar-card":""} `}>
-      <div className="card-text-wrapper">
-        {children}
+      <div className={`card-wrapper ${calendarCard ? "calendar-card" : ""} `}>
+        <div className="card-text-wrapper">
+          {children}
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default Card;

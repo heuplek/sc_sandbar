@@ -29,8 +29,8 @@ export interface CalendarContextType {
     setMonth: (month: number) => void;
     year: number;
     setYear: (year: number) => void;
-    calendarData: TideRespObj[];
-    setCalendarData: (calendarData: TideRespObj[]) => void;
+    calendarData: TideRespObj | undefined;
+    setCalendarData: (calendarData: TideRespObj) => void;
     leftDrawerOpen: boolean;
     setLeftDrawerOpen: (leftDrawerOpen: boolean) => void;
     rightDrawerOpen: boolean;
@@ -39,6 +39,13 @@ export interface CalendarContextType {
     setTideData: (modalData: TideRespObj) => void;
     weatherData: WeatherObj[] | undefined;
     setWeatherData: (modalData: WeatherObj[]) => void;
+    weekendIdealLow: number;
+    setWeekendIdealLow: (idealLow: number) => void;
+    weekdayIdealLow: number;
+    setWeekdayIdealLow: (idealLow: number) => void;
+    errorObj: string | undefined;
+    setErrorObj: (errorObj: string) => void;
+
 }
 
 const AppContext = createContext<CalendarContextType | undefined>(undefined);
@@ -61,7 +68,10 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const [tideData, setTideData] = useState<TideRespObj>();
     const [weatherData, setWeatherData] = useState<WeatherObj[]>([]);
     //not actually using this yet
-    const [calendarData, setCalendarData] = useState<TideRespObj[]>([]);
+    const [calendarData, setCalendarData] = useState<TideRespObj>();
+    const [weekendIdealLow, setWeekendIdealLow] = useState<number>(13.5);
+    const [weekdayIdealLow, setWeekdayIdealLow] = useState<number>(17);
+    const [errorObj, setErrorObj] = useState<string | undefined>(undefined);
 
     const value: CalendarContextType = {
         day,
@@ -80,6 +90,12 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
         setTideData,
         weatherData,
         setWeatherData,
+        weekendIdealLow,
+        setWeekendIdealLow,
+        weekdayIdealLow,
+        setWeekdayIdealLow,
+        errorObj,
+        setErrorObj,
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

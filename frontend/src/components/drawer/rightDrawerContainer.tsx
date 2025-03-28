@@ -1,5 +1,5 @@
 import "./drawer.css";
-import { use, useRef } from "react";
+import { useRef } from "react";
 import TideDrawerContent from "./tideDrawerContent";
 import { useCalendarContext } from "../../context/calendarContext";
 import WeatherDrawerContent from "./weatherDrawerContent";
@@ -8,7 +8,7 @@ import ChevronButton from "../chevronButton/chevronButton";
 
 
 const RightDrawerContainer = () => {
-    const { rightDrawerOpen, setRightDrawerOpen} = useCalendarContext();
+    const { rightDrawerOpen, setRightDrawerOpen } = useCalendarContext();
     //Window Resize close drawers if both are open to prevent wonky layout
     const { width } = useWindowSize();
 
@@ -24,7 +24,7 @@ const RightDrawerContainer = () => {
 
         <div
             ref={rightSidebarRef}
-            className={rightDrawerOpen ? `right-sidebar active` : 'right-sidebar' }
+            className={rightDrawerOpen ? `right-sidebar active` : 'right-sidebar'}
             data-sidebaropen={rightDrawerOpen}
         >
             <div className="sidebar-content">
