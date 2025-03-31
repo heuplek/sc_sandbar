@@ -10,8 +10,8 @@ app = FastAPI()
 origins = [
     "216.24.60.0/24"
     "https://216.24.60.0/24",
-    "https://sc-sandbar-fe.onrender.com",
-    "http://sc-sandbar-fe.onrender.com",
+    "https://battery-creek-sandbar.onrender.com",
+    "http://battery-creek-sandbar.onrender.com",
     "https://216.24.60.0/24"
 ]
 
