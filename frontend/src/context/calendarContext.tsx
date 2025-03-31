@@ -44,7 +44,7 @@ export interface CalendarContextType {
     weekdayIdealLow: number;
     setWeekdayIdealLow: (idealLow: number) => void;
     errorObj: string | undefined;
-    setErrorObj: (errorObj: string) => void;
+    setErrorObj: (errorObj: string | undefined) => void;
 
 }
 
