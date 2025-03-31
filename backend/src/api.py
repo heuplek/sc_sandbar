@@ -7,8 +7,9 @@ from pydantic import BaseModel, Field
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "localhost:3000"
+    "216.24.60.0/24"
+    "https://216.24.60.0/24",
+    "https://sc-sandbar-fe.onrender.com/"
 ]
 
 app.add_middleware(

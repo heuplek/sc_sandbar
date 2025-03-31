@@ -5,10 +5,8 @@ const ErrorBar = () => {
     const { errorObj } = useCalendarContext()
     return (
         errorObj &&
-        <div className="header-wrapper">
-            <div className='header-text-wrapper'>
-                <span className='header-text'>{errorObj}</span>
-            </div>
+        <div className="error-wrapper">
+            <span className='error-text'>{errorObj}</span>
         </div>
     )
 }
