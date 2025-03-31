@@ -163,7 +163,7 @@ def get_new_endpoint():
     ##TODO to add a log here so I can update the endpoint in the future
     lat_long = "https://api.weather.gov/points/32.4258,-80.6869"
     headers={'User-Agent': ('https://sc-sandbar.onrender.com/tides, heuple.kevin@gmail.com')}
-    response = requests.get(lat_long)
+    response = requests.get(lat_long, headers=headers)
     gridpoints = response.json()
     return gridpoints['properties']['forecast']
 
