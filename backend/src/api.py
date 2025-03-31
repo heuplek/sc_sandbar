@@ -29,17 +29,19 @@ class TideItem(BaseModel):
     weekendIdealLow: float
 
 
-@app.options('/'){
+@app.options('/')
+def root_options():
     if request.method == "OPTIONS":
         # Preflight request for CORS
         return HTTPStatus.OK  # Preflight request for CORS
-}
 
-@app.options('/tides'){
+
+@app.options('/tides')
+def tides_options():
     if request.method == "OPTIONS":
         # Preflight request for CORS
         return HTTPStatus.OK
-} 
+
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
