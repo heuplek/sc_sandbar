@@ -7,19 +7,20 @@ import Card from '../card/card';
 import ChevronButton from '../chevronButton/chevronButton';
 import DatePicker from '../datepicker/datepicker';
 import { getLongDate } from '../../helpers/getLongDate';
+import { getMonthName } from '../../helpers/getMonthName';
 
 
 const MobileCalendar = () => {
     const { month, year, day, setDay, setMonth } = useCalendarContext();
     const today = new Date();
     const { mutate: getMonthTideRatings, data, isPending } = useGetMonthTideRatings();
-    const [monthLabel, setMonthLabel] = useState(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
+    const [monthLabel, setMonthLabel] = useState(getMonthName(month));
     const [firstDay, setFirstDay] = useState(new Date(year, month - 1, 1));
     const [startDay, setStartDay] = useState(firstDay.getDay() + 1);
     const [showDatePicker, setShowDatePicker] = useState(false);
     let offSeason = false;
     useEffect(() => {
-        setMonthLabel(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
+        setMonthLabel(getMonthName(month));
         const firstDayLocal = new Date(year, month - 1, 1);
         setFirstDay(firstDayLocal);
         setStartDay(firstDayLocal.getDay() + 1);
