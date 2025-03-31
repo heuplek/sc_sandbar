@@ -30,7 +30,7 @@ class TideItem(BaseModel):
     weekendIdealLow: float
 
 
-@app.options('/*', status_code=200)
+@app.options('/tides', status_code=200)
 def root_options():
     print("OPTIONS request received at root")
     return {"message": "received"}  # Preflight request for CORS
