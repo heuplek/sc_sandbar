@@ -7,6 +7,8 @@ const getMonthTideRatings = async (month: number, year: number, weekdayIdealLow:
         headers: {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
+        redirect: 'follow',
         body: JSON.stringify({ month, year, weekdayIdealLow, weekendIdealLow }),
     });
     if (!response.ok) {
