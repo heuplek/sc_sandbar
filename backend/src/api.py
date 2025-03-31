@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.services import get_tide_times
 from pydantic import BaseModel, Field
+from http import HTTPStatus
+
 
 
 app = FastAPI()
@@ -26,6 +28,18 @@ class TideItem(BaseModel):
     weekdayIdealLow: float
     weekendIdealLow: float
 
+
+@app.options('/'){
+    if request.method == "OPTIONS":
+        # Preflight request for CORS
+        return HTTPStatus.OK  # Preflight request for CORS
+}
+
+@app.options('/tides'){
+    if request.method == "OPTIONS":
+        # Preflight request for CORS
+        return HTTPStatus.OK
+} 
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
