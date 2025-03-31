@@ -5,7 +5,7 @@ const getMonthTideRatings = async (month: number, year: number, weekdayIdealLow:
     const response = await fetch(`https://sc-sandbar.onrender.com/tides`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'text/plain',
         },
         body: JSON.stringify({ month, year, weekdayIdealLow, weekendIdealLow }),
     });
@@ -25,6 +25,7 @@ export const useGetMonthTideRatings = () => {
         mutationFn: () => getMonthTideRatings(month, year, weekdayIdealLow, weekendIdealLow),
         onSuccess: (data) => {
             setCalendarData(data);
+            setErrorObj(undefined);
         },
         onSettled: () => {},
         onError: (error) => {
