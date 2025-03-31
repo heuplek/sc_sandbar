@@ -1,24 +1,15 @@
-.header-wrapper{
-    margin-top: 0;
+.error-wrapper {
+    margin-top: 10px;
     position: sticky;
     top: 0px;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--error);
 }
 
-.header-text-wrapper{
-    background-color: var(--dark);
-    padding: 10px 20px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border: 1px solid var(--light);
-    border-top: none;
-}
-
-.header-text{
+.error-text {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--light);
+    color: black;
 }
