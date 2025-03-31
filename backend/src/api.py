@@ -11,7 +11,9 @@ app = FastAPI()
 origins = [
     "216.24.60.0/24"
     "https://216.24.60.0/24",
-    "https://sc-sandbar-fe.onrender.com"
+    "https://sc-sandbar-fe.onrender.com",
+    "http://sc-sandbar-fe.onrender.com",
+    "https://216.24.60.0/24"
 ]
 
 app.add_middleware(
@@ -31,6 +33,7 @@ class TideItem(BaseModel):
 
 @app.options('/')
 def root_options():
+    print("OPTIONS request received at root")
     if request.method == "OPTIONS":
         # Preflight request for CORS
         return HTTPStatus.OK  # Preflight request for CORS
@@ -38,6 +41,7 @@ def root_options():
 
 @app.options('/tides')
 def tides_options():
+    print("OPTIONS request received at /tides")
     if request.method == "OPTIONS":
         # Preflight request for CORS
         return HTTPStatus.OK
