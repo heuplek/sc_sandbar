@@ -45,7 +45,7 @@ const MobileCalendarDay = ({ date, today, dayData, weatherData, isPending }: Cal
                     <div className="mobile-date--container">
                         {weatherIcon && <img className="mobile-weather" src={weatherIcon} alt={weatherIconAlt} height="48" />}
                     </div>
-                    <div className="calendar-columns">
+                    <div className={weatherData ? "calendar-columns" : "calendar-columns--no-weather"}>
                         <div >
                             <h3 className="mobile-column-header">Tides</h3>
                             {dayData?.tides.map((tide, i) => {
@@ -62,7 +62,7 @@ const MobileCalendarDay = ({ date, today, dayData, weatherData, isPending }: Cal
                                 )
                             })}
                         </div>
-                        {weatherData ? <div>
+                        {weatherData && <div>
                             <h3 className="mobile-column-header">Weather</h3>
                             {weatherData?.map((period, i) => {
                                 const rainChance = period.percipChance == undefined ? "0" : period.percipChance;
@@ -76,8 +76,7 @@ const MobileCalendarDay = ({ date, today, dayData, weatherData, isPending }: Cal
                                     </div>
                                 )
                             })}
-                        </div> :
-                            <div className="hold-space"></div>}
+                        </div>}
                     </div>
                     {dayData && dayData.tides.map((tide, i) => {
                         if (tide.sandbar_rating != 0 && tide.sandbar_rating != undefined) {
