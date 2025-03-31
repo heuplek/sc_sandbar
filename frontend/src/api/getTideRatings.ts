@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useCalendarContext } from '../context/calendarContext';
 
 const getMonthTideRatings = async (month: number, year: number, weekdayIdealLow: number, weekendIdealLow: number) => {
-    const response = await fetch(`http://localhost:8000/tides`, {
+    const response = await fetch(`https://sc-sandbar.onrender.com/tides`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
