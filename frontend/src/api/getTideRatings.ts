@@ -5,7 +5,7 @@ const getMonthTideRatings = async (month: number, year: number, weekdayIdealLow:
     const response = await fetch(`https://sc-sandbar.onrender.com/tides`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({ month, year, weekdayIdealLow, weekendIdealLow }),
     });

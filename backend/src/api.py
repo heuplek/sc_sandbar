@@ -9,14 +9,14 @@ app = FastAPI()
 origins = [
     "216.24.60.0/24"
     "https://216.24.60.0/24",
-    "https://sc-sandbar-fe.onrender.com/"
+    "https://sc-sandbar-fe.onrender.com"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET,POST"],
+    allow_methods=["GET,POST,OPTIONS"],
     allow_headers=["*"]
 )
 
