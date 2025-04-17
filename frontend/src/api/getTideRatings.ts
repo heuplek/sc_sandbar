@@ -3,8 +3,8 @@ import { useCalendarContext } from '../context/calendarContext';
 
 const getMonthTideRatings = async (month: number, year: number, weekdayIdealLow: number, weekendIdealLow: number) => {
 
-    const apiUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : 'https://sc-sandbar.onrender.com';
-    const response = await fetch(`${apiUrl}/tides`, {
+    //const apiUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : 'https://sc-sandbar.onrender.com';
+    const response = await fetch(`https://sc-sandbar.onrender.com/tides`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
