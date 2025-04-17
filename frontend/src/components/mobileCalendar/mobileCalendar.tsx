@@ -11,7 +11,7 @@ import { getMonthName } from '../../helpers/getMonthName';
 
 
 const MobileCalendar = () => {
-    const { month, year, day, setDay, setMonth } = useCalendarContext();
+    const { month, year, day, setDay, setMonth, weekdayIdealLow, weekendIdealLow } = useCalendarContext();
     const today = new Date();
     const { mutate: getMonthTideRatings, data, isPending } = useGetMonthTideRatings();
     const [monthLabel, setMonthLabel] = useState(getMonthName(month));
@@ -26,6 +26,10 @@ const MobileCalendar = () => {
         setStartDay(firstDayLocal.getDay() + 1);
         getMonthTideRatings();
     }, [month])
+    useEffect(
+    function refetchOnIdealChange() {
+            getMonthTideRatings();
+        }, [weekdayIdealLow, weekendIdealLow])
     useEffect(() => {
         const currDay = new Date(year, month - 1, day)
         if (currDay.getMonth() + 1 !== month) {
