@@ -37,6 +37,7 @@ const LandingPage = () => {
             setWeekdaySandbarWindow(sandbarWindow(weekdayIdealLow, 3));
         }
     }, [weekendIdealLow, weekdayIdealLow]);
+
     return (
         aboutOpen ?
             (
@@ -46,14 +47,14 @@ const LandingPage = () => {
 
             <main>
                 <div className="user-inputs-wrapper">
-                    {isWeekend && <Card>
+                    {(!isMobile || isWeekend) && <Card>
                         <div className="user-inputs-content">
                             <h2>Weekend</h2>
                             <Select value={weekendIdealLow} setValue={setWeekendIdealLow} frame="weekend" />
                             <p className="user-inputs-window">Sandbar window: {weekendSandbarWindow}</p>
                         </div>
                     </Card>}
-                    {!isWeekend && <Card>
+                    {(!isMobile || !isWeekend) && <Card>
                         <div className="user-inputs-content">
                             <h2>Week</h2>
                             <Select value={weekdayIdealLow} setValue={setWeekdayIdealLow} frame="weekday" />
