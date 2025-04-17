@@ -8,13 +8,14 @@ import { useCalendarContext } from '../../context/calendarContext';
 import Card from '../card/card';
 import ChevronButton from '../chevronButton/chevronButton';
 import OffSeason from '../offSeason/offSeason';
+import { getMonthName } from '../../helpers/getMonthName';
 
 
 const Calendar = () => {
     const { month, year, setMonth, setDay, setTideData, setWeatherData, weekdayIdealLow, weekendIdealLow, setLeftDrawerOpen } = useCalendarContext();
     const today = new Date();
     const { mutate: getMonthTideRatings, data, isPending } = useGetMonthTideRatings();
-    const [monthLabel, setMonthLabel] = useState(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
+    const [monthLabel, setMonthLabel] = useState(getMonthName(month));
     const [firstDay, setFirstDay] = useState(new Date(year, month - 1, 1));
     const [lastDay, setLastDay] = useState(new Date(year, month, 0));
     const [startDay, setStartDay] = useState(firstDay.getDay() + 1);
@@ -22,7 +23,7 @@ const Calendar = () => {
     let offSeason = false;
     useEffect(
         function refetchOnMonthChange() {
-            setMonthLabel(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
+            setMonthLabel(getMonthName(month));
             const firstDayLocal = new Date(year, month - 1, 1);
             setFirstDay(firstDayLocal);
             const lastDayLocal = new Date(year, month, 0);

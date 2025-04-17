@@ -1,4 +1,4 @@
-.header-wrapper{
+.header-wrapper {
     margin-top: 0;
     position: sticky;
     top: 0px;
@@ -8,16 +8,17 @@
     align-items: center;
 }
 
-.header-text-wrapper{
+.header-text-wrapper {
     background-color: var(--dark);
     padding: 10px 20px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border: 1px solid var(--light);
     border-top: none;
+    text-align: center;
 }
 
-.header-text{
+.header-text {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--light);

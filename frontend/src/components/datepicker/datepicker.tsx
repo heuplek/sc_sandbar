@@ -4,6 +4,7 @@ import { useCalendarContext } from '../../context/calendarContext';
 import Card from '../card/card';
 import ChevronButton from '../chevronButton/chevronButton';
 import './datepicker.css'
+import { getMonthName } from '../../helpers/getMonthName';
 
 type DatePickerProps = {
     setShowDatePicker: (show: boolean) => void;
@@ -14,14 +15,14 @@ const DatePicker = ({ setShowDatePicker }: DatePickerProps) => {
     const { month, year, setDay, setMonth } = useCalendarContext();
     const today = new Date();
     const [dpMonth, setDpMonth] = useState(month);
-    const [monthLabel, setMonthLabel] = useState(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(month.toString())));
+    const [monthLabel, setMonthLabel] = useState(getMonthName(month));
     const [firstDay, setFirstDay] = useState(new Date(year, month - 1, 1));
     const [lastDay, setLastDay] = useState(new Date(year, month, 0));
     const [startDay, setStartDay] = useState(firstDay.getDay() + 1);
     const [monthLength, setMonthLength] = useState(daysBetween(firstDay, lastDay) + 1);
     useEffect(
         function refetchOnMonthChange() {
-            setMonthLabel(Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(dpMonth.toString())));
+            setMonthLabel(getMonthName(dpMonth));
             const firstDayLocal = new Date(year, dpMonth - 1, 1);
             setFirstDay(firstDayLocal);
             const lastDayLocal = new Date(year, dpMonth, 0);
